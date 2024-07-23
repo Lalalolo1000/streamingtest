@@ -44,10 +44,10 @@ else:
 i = 0
 while i < 30:
 
-    link = "https://www.earthcam.com/usa/newyork/timessquare/?cam=tsrobo1"
+    #link = "https://www.earthcam.com/usa/newyork/timessquare/?cam=tsrobo1"
     #link = "https://www.whatsupcams.com/en/webcams/slovenia/upper-carniola/kranjska-gora/ski-resort-kranjska-gora-vitranc-1-upper-station/"
+    link = "https://www.whatsupcams.com/en/webcams/st-barths/st-barths/gustavia/live-webcam-st-barth-island-fond-de-rade-french-antilles-caribbean/"
     #link = "https://www.webcamtaxi.com/en/spain/lanzarote/lanzarote-airport.html"
-    #link = "https://www.whatsupcams.com/en/webcams/st-barths/st-barths/gustavia/live-webcam-st-barth-island-fond-de-rade-french-antilles-caribbean/"
     #link = "https://www.skylinewebcams.com/de/webcam/deutschland/north-rhine-westphalia/cologne/cologne.html"
     #link = "https://www.whatsupcams.com/de/webcams/italien/trentino-sudtirol/muehlbach/gitschberg-jochtal-webcam-skiexpress-tal/#google_vignette"
     if not TESTING:
@@ -75,14 +75,11 @@ while i < 30:
 
             actions.double_click(element).perform()
 
-
-            while True:
-                print("still running:")
-                print(driver.execute_script('return document.querySelector("video").readyState'))
-                WebDriverWait(driver, 15).until(
-                    lambda d: d.execute_script('return document.querySelector("video") && document.querySelector("video").readyState !== 0')
-                )
-                time.sleep(15)
+            driver.execute_script("""
+                var sheet = window.document.styleSheets[0];
+                sheet.insertRule('img { opacity: 0; }', sheet.cssRules.length);
+                sheet.insertRule('* { font-size: 0px !important; }', sheet.cssRules.length);
+            """)
             
         if "whatsupcams.com" in link:
             # Wait until the iframe is clickable
@@ -105,14 +102,20 @@ while i < 30:
             # Switch to the iframe
             driver.switch_to.frame(iframe)
 
-            # Wait until the video element is ready within the iframe
-            while True:
-                WebDriverWait(driver, 15).until(
-                    lambda d: d.execute_script('return document.querySelector("video") && document.querySelector("video").readyState !== 0')
-                )
-                print("still running")
-                time.sleep(15)
+            driver.execute_script("""
+                var sheet = window.document.styleSheets[0];
+                sheet.insertRule('img { opacity: 0; }', sheet.cssRules.length);
+                sheet.insertRule('* { font-size: 0px !important; }', sheet.cssRules.length);
+            """)
 
+
+        while True:
+            print("still running:")
+            print(driver.execute_script('return document.querySelector("video").readyState'))
+            WebDriverWait(driver, 15).until(
+                lambda d: d.execute_script('return document.querySelector("video") && document.querySelector("video").readyState !== 0')
+            )
+            time.sleep(15)
 
         # driver.set_window_position(0, 0)
         # driver.fullscreen_window()
