@@ -65,7 +65,7 @@ while i < 3:
             # button.click()
 
             # Wait for the element to be present
-            element = WebDriverWait(driver, 20).until(
+            element = WebDriverWait(driver, 60).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, "video"))
             )
 
@@ -150,7 +150,7 @@ while i < 3:
         driver.set_window_position(0, 0)
         driver.fullscreen_window()
         
-        time.sleep(240)
+        time.sleep(9000)
         
         print('Video not running!')
         
