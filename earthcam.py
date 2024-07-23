@@ -110,7 +110,7 @@ while i < 30:
             """)
 
 
-        while True:
+        for repeats in range(500):
             print("still running:")
             print(driver.execute_script('return document.querySelector("video").readyState'))
             WebDriverWait(driver, 15).until(
