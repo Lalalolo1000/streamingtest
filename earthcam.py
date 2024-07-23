@@ -150,8 +150,9 @@ while i < 30:
         driver.fullscreen_window()
         
         while True:
+            time.sleep(30)
             if driver.execute_script('return document.querySelector("video").readyState < 4 || document.querySelector("video").paused == true'):
-                time.sleep(10)
+                time.sleep(30)
                 if driver.execute_script('return document.querySelector("video").readyState < 4 || document.querySelector("video").paused == true'):
                     break
         
