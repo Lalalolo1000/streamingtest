@@ -44,9 +44,9 @@ while i < 3:
     #link = "https://www.skylinewebcams.com/de/webcam/deutschland/north-rhine-westphalia/cologne/cologne.html"
     #link = "https://www.whatsupcams.com/de/webcams/italien/trentino-sudtirol/muehlbach/gitschberg-jochtal-webcam-skiexpress-tal/#google_vignette"
     # if not TESTING:
-        # link = '#link#'
     # else:
         # link = "https://www.earthcam.com/usa/tennessee/nashville/?cam=nashville"
+    link = '#link#'
     driver.set_window_position(1280, 720)
     
     wait = WebDriverWait(driver, 10)
