@@ -76,12 +76,14 @@ while i < 30:
 
             actions.double_click(element).perform()
 
+            time.sleep(20)
+
             while True:
-                WebDriverWait(driver, 10).until(
+                WebDriverWait(driver, 15).until(
                     lambda d: d.execute_script('return document.querySelector("video") && document.querySelector("video").readyState === 4')
                 )
                 print("still running")
-                time.sleep(10)
+                time.sleep(15)
             
             # driver.execute_script("""
             #     var sheet = window.document.styleSheets[0];
