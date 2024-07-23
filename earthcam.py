@@ -40,13 +40,13 @@ else:
 i = 0
 while i < 3:
 
-    #link = "https://www.earthcam.com/usa/tennessee/nashville/?cam=nashville"
+    link = "https://www.earthcam.com/usa/tennessee/nashville/?cam=nashville"
     #link = "https://www.skylinewebcams.com/de/webcam/deutschland/north-rhine-westphalia/cologne/cologne.html"
     #link = "https://www.whatsupcams.com/de/webcams/italien/trentino-sudtirol/muehlbach/gitschberg-jochtal-webcam-skiexpress-tal/#google_vignette"
-    if not TESTING:
-        link = '#link#'
-    else:
-        link = "https://www.earthcam.com/usa/tennessee/nashville/?cam=nashville"
+    # if not TESTING:
+        # link = '#link#'
+    # else:
+        # link = "https://www.earthcam.com/usa/tennessee/nashville/?cam=nashville"
     driver.set_window_position(1280, 720)
     
     wait = WebDriverWait(driver, 10)
@@ -59,10 +59,10 @@ while i < 3:
         
         if "earthcam.com" in link:
             # Wait for the button to be present and clickable, then click it
-            button = WebDriverWait(driver, 20).until(
-                EC.element_to_be_clickable((By.CSS_SELECTOR, "button.fc-button.fc-cta-do-not-consent.fc-secondary-button"))
-            )
-            button.click()
+            # button = WebDriverWait(driver, 20).until(
+            #     EC.element_to_be_clickable((By.CSS_SELECTOR, "button.fc-button.fc-cta-do-not-consent.fc-secondary-button"))
+            # )
+            # button.click()
 
             # Wait for the element to be present
             element = WebDriverWait(driver, 20).until(
@@ -147,7 +147,7 @@ while i < 3:
         driver.set_window_position(0, 0)
         driver.fullscreen_window()
         
-        time.sleep(120)
+        time.sleep(240)
         
         print('Video not running!')
         
