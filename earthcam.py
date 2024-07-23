@@ -45,10 +45,9 @@ while i < 30:
     link = "https://www.earthcam.com/usa/newyork/timessquare/?cam=tsrobo1"
     #link = "https://www.skylinewebcams.com/de/webcam/deutschland/north-rhine-westphalia/cologne/cologne.html"
     #link = "https://www.whatsupcams.com/de/webcams/italien/trentino-sudtirol/muehlbach/gitschberg-jochtal-webcam-skiexpress-tal/#google_vignette"
-    # if not TESTING:
-    # else:
-        # link = "https://www.earthcam.com/usa/tennessee/nashville/?cam=nashville"
-    link = '#link#'
+    if not TESTING:
+        link = '#link#'
+    
     driver.set_window_position(1280, 720)
     
     # wait = WebDriverWait(driver, 10)
@@ -57,7 +56,6 @@ while i < 30:
 
         driver.get(link)
 
-        
         if "earthcam.com" in link:
             # Wait for the button to be present and clickable, then click it
             # button = WebDriverWait(driver, 20).until(
@@ -74,6 +72,13 @@ while i < 30:
 
             actions.double_click(element).perform()
 
+            # driver.execute_script("""
+            #     var sheet = window.document.styleSheets[0];
+            #     sheet.insertRule('body * { display: none !important; }', sheet.cssRules.length);
+            #     sheet.insertRule('video { display: block !important; }', sheet.cssRules.length);
+            # """)
+
+
             # # Add multiple CSS rules to the element
             # driver.execute_script("""
             #     var sheet = window.document.styleSheets[0];
@@ -89,80 +94,16 @@ while i < 30:
             # """, element)
 
 
-        if "skylinewebcams.com" in link:
-            # Wait for the button to be present and clickable, then click it
-            button = WebDriverWait(driver, 20).until(
-                EC.element_to_be_clickable((By.CSS_SELECTOR, "button.fc-button.fc-cta-consent.fc-primary-button"))
-            )
-            button.click()
-
-
-            playerbutton = WebDriverWait(driver, 20).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, ".player-poster.clickable"))
-            )
-
-            # Wait for the element to be present
-            element = WebDriverWait(driver, 20).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "video"))
-            )
-
-            playerbutton.click()
-
-            driver.execute_script("""
-                var element = arguments[0];
-                document.body.appendChild(element);
-                element.style.cssText += 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999999999999999999999999;';
-
-                document.body.style.cssText += 'overflow: hidden !important; height: 100vh !important;'
-            """, element)
-
-
-        # if "whatsupcams.com" in link:
-        #     # Wait for the button to be present and clickable, then click it
-        #     button = WebDriverWait(driver, 20).until(
-        #         EC.element_to_be_clickable((By.CSS_SELECTOR, "button.fc-button.fc-cta-consent.fc-primary-button"))
-        #     )
-        #     button.click()
-
-        #     # Wait until the iframe with the specified CSS selector is present
-        #     iframe_css_selector = "iframe.embed-responsive-item.home-page-webcam-container"
-        #     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, iframe_css_selector)))
-
-        #     # Grab the URL from the iframe
-        #     iframe_element = driver.find_element(By.CSS_SELECTOR, iframe_css_selector)
-        #     driver.switch_to.frame(iframe_element)
-
-
-        #     driver.execute_script("""
-        #         var element = document.querySelector('video');
-        #         document.body.appendChild(element);
-        #         element.style.cssText += 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999999999999999999999999;';
-
-        #         document.body.style.cssText += 'overflow: hidden !important; height: 100vh !important;'
-        #     """)
-
-        #     # driver.switch_to.default_content()
-
-        #     driver.execute_script("""
-        #         var element = arguments[0];
-        #         document.body.appendChild(element);
-        #         element.style.cssText += 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999999999999999999999999;';
-
-        #         document.body.style.cssText += 'overflow: hidden !important; height: 100vh !important;'
-        #     """, iframe_element)
 
         time.sleep(5)
 
         # driver.set_window_position(0, 0)
         # driver.fullscreen_window()
         
-        time.sleep(900)
-        # while True:
-        #     time.sleep(30)
-        #     if driver.execute_script('return document.querySelector("video").readyState < 4 || document.querySelector("video").paused == true'):
-        #         time.sleep(30)
-        #         if driver.execute_script('return document.querySelector("video").readyState < 4 || document.querySelector("video").paused == true'):
-        #             break
+        while True:
+            time.sleep(10)
+            if driver.execute_script('return document.querySelector("video").readyState === 0'):
+                break
         
         print('Video not running!')
         
