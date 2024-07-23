@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>24x Nordpol Video-Switcher</title>
+        <style>
+            body {
+                font-family: sans-serif;
+            }
+
+            .content {
+                margin: auto;
+                max-width: 1140px;
+            }
+
+            label {
+                width: 20%;
+                display: block;
+                float: left;
+            }
+
+            input[type=url], select {
+              width: 100%;
+              padding: 12px 20px;
+              margin: 8px 0;
+              display: inline-block;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              box-sizing: border-box;
+              border-bottom: 1px solid #000;
+              border-bottom-left-radius: 0px;
+              border-bottom-right-radius: 0px;
+              background-color: #fafafa;
+              margin-bottom: 40px;
+            }   
+            
+            input[type=submit] {
+              width: 100%;
+              background-color: #4CAF50;
+              color: white;
+              padding: 14px 20px;
+              margin: 8px 0;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+            }
+
+            input[type=submit]:hover {
+              background-color: #45a049;
+            }
+            
+            input[type=button] {
+              width: 100%;
+              background-color: #4C4C4C;
+              color: white;
+              padding: 14px 20px;
+              margin: 8px 0;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+            }
+
+            input[type=button]:hover {
+              background-color: #454545;
+            }
+        </style>
+        <script>
+            function checkUrls(e) {
+                let error = false
+                let errorNumbers = []
+                
+                document.querySelectorAll('input[type=url]').forEach((input, index) => {
+                    let str = input.value
+                    console.log(str)
+                    if (!str.includes('earthcam.com') && !str.includes('youtube') && !str.includes('skylinewebcams.com')) {
+                        errorNumbers.push(index + 1)
+                        error = true
+                    }
+                })
+                if (error) {
+                    alert(`Fehler aufgetreten, folgende Webcam-Links sind weder von YouTube, earthcam.com oder skylinewebcams.com: ${errorNumbers.join(',')}`)
+                } else {
+                    document.querySelector('form').submit()
+                }
+                return !error
+            }
+        </script>
+    </head>
+    <body>
+        <div class="content">
+            <h1>24x Nordpol</h1>
+            <form action="/save" method="POST" ></form>
+        </div>
+        <script>
+            window.onload = function () {
+                function reqListener (cams) {
+                    let form = document.querySelector('form')
+                    for (let i = 0; i < 24; i++) {
+                        
+                        let index = i + 1
+
+                        let template = `<p class="name">Kamera ${index} (Zeitzone ${(index - 12) > 0 ? '+' : ''}${index - 12})</p><input type="url" name="cam${index}" id="cam${index}" value="${cams['cam' + index]}" placeholder="Video-Link eintragen">`
+
+                        form.innerHTML += template
+                    }
+                    
+                    let restore = document.createElement('input')
+                    restore.type = 'button'
+                    restore.value = 'Wiederherstellen'
+                    form.appendChild(restore)
+                    restore.onclick = function () {
+                        location.reload();
+                    }
+
+                    let submit = document.createElement('input')
+                    submit.type = 'submit'
+                    submit.value = 'Speichern'
+                    form.appendChild(submit)
+                }
+
+                var xhr = new XMLHttpRequest();
+                var url = 'cams.json';
+
+                xhr.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var cams = JSON.parse(this.responseText);
+                        console.log(cams);
+                        reqListener(cams);
+                    }
+                };
+                xhr.open('GET', url, true);
+                xhr.send();
+            }
+        </script>
+    </body>
+</html>

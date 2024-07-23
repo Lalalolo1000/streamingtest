@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+	<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            body {
+                font-family: sans-serif;
+            }
+
+            label {
+                width: 20%;
+                display: block;
+                float: left;
+            }
+
+            input {
+                width: 20%;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>24x Nordpol</h1>
+        <form action="/save" method="POST">
+        </form>
+        <script>
+            window.onload = function () {
+                function reqListener (cams) {
+                    let form = document.querySelector('form')
+                    for (let i = 0; i < 24; i++) {
+                        let index = i + 1
+                        let label = document.createElement('label')
+                        label.for = 'cam' + index
+                        label.innerText = 'Earthcam Link ' + index
+
+                        let input = document.createElement('input')
+                        input.type = 'url'
+                        input.required = true
+                        input.name = 'cam' + index
+                        input.id = input.name
+                        input.value = cams['cam' + index]
+                        input.placeholder = 'Enter EarthCam-Link'
+
+                        let br = document.createElement('br')
+
+                        form.appendChild(label)
+                        form.appendChild(input)
+                        form.appendChild(br)
+                    }
+
+                    let submit = document.createElement('input')
+                    submit.type = 'submit'
+                    submit.value = 'Save'
+                    form.appendChild(submit)
+                }
+
+                var xhr = new XMLHttpRequest();
+                var url = "cams.json";
+
+                xhr.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var cams = JSON.parse(this.responseText);
+                        reqListener(cams);
+                    }
+                };
+                xhr.open("GET", url, true);
+                xhr.send();
+            }
+        </script>
+    </body>
+</html>
