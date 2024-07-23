@@ -153,8 +153,8 @@ while i < 30:
 
         time.sleep(5)
 
-        driver.set_window_position(0, 0)
-        driver.fullscreen_window()
+        # driver.set_window_position(0, 0)
+        # driver.fullscreen_window()
         
         time.sleep(900)
         # while True:
