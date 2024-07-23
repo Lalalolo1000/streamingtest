@@ -62,11 +62,11 @@ while i < 30:
         driver.get(link)
 
         if "earthcam.com" in link:
-            element = WebDriverWait(driver, 60).until(
+            element = WebDriverWait(driver, 120).until(
                 EC.element_to_be_clickable((By.CSS_SELECTOR, "video"))
             )
 
-            WebDriverWait(driver, 20).until(
+            WebDriverWait(driver, 30).until(
                 lambda d: d.execute_script('return document.querySelector("video") && document.querySelector("video").readyState !== 0')
             )
 
@@ -83,7 +83,7 @@ while i < 30:
             
         if "whatsupcams.com" in link:
             # Wait until the iframe is clickable
-            iframe = WebDriverWait(driver, 60).until(
+            iframe = WebDriverWait(driver, 140).until(
                 EC.element_to_be_clickable((By.CSS_SELECTOR, ".embed-responsive iframe"))
             )
 
