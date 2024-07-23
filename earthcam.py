@@ -106,6 +106,7 @@ while i < 30:
                 var sheet = window.document.styleSheets[0];
                 sheet.insertRule('img { opacity: 0; }', sheet.cssRules.length);
                 sheet.insertRule('* { font-size: 0px !important; }', sheet.cssRules.length);
+                sheet.insertRule('.ytp-spinner { opacity: 0 !important; }', sheet.cssRules.length);
             """)
 
 
