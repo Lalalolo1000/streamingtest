@@ -18,6 +18,8 @@ chrome_options = webdriver.ChromeOptions()
 # Running
 if not TESTING:
     chrome_options.add_argument('user-data-dir=/home/pi/.config/chromium/')
+else:
+    chrome_options.add_argument('user-data-dir=/home/ki-lab/user-data')
 
 prefs = {'exit_type': 'Normal'}
 chrome_options.add_experimental_option("prefs", {'profile': prefs})
@@ -43,6 +45,9 @@ i = 0
 while i < 30:
 
     link = "https://www.earthcam.com/usa/newyork/timessquare/?cam=tsrobo1"
+    link = "https://www.whatsupcams.com/en/webcams/slovenia/upper-carniola/kranjska-gora/ski-resort-kranjska-gora-vitranc-1-upper-station/"
+    link = "https://www.webcamtaxi.com/en/spain/lanzarote/lanzarote-airport.html"
+    #link = "https://www.whatsupcams.com/en/webcams/st-barths/st-barths/gustavia/live-webcam-st-barth-island-fond-de-rade-french-antilles-caribbean/"
     #link = "https://www.skylinewebcams.com/de/webcam/deutschland/north-rhine-westphalia/cologne/cologne.html"
     #link = "https://www.whatsupcams.com/de/webcams/italien/trentino-sudtirol/muehlbach/gitschberg-jochtal-webcam-skiexpress-tal/#google_vignette"
     if not TESTING:
@@ -57,13 +62,6 @@ while i < 30:
         driver.get(link)
 
         if "earthcam.com" in link:
-            # Wait for the button to be present and clickable, then click it
-            # button = WebDriverWait(driver, 20).until(
-            #     EC.element_to_be_clickable((By.CSS_SELECTOR, "button.fc-button.fc-cta-do-not-consent.fc-secondary-button"))
-            # )
-            # button.click()
-
-            # Wait for the element to be present
             element = WebDriverWait(driver, 60).until(
                 EC.element_to_be_clickable((By.CSS_SELECTOR, "video"))
             )
@@ -72,11 +70,11 @@ while i < 30:
                 lambda d: d.execute_script('return document.querySelector("video") && document.querySelector("video").readyState === 4')
             )
 
+            time.sleep(20)
             actions = ActionChains(driver)
 
             actions.double_click(element).perform()
 
-            time.sleep(20)
 
             while True:
                 WebDriverWait(driver, 15).until(
@@ -85,37 +83,42 @@ while i < 30:
                 print("still running")
                 time.sleep(15)
             
-            # driver.execute_script("""
-            #     var sheet = window.document.styleSheets[0];
-            #     sheet.insertRule('body * { display: none !important; }', sheet.cssRules.length);
-            #     sheet.insertRule('video { display: block !important; }', sheet.cssRules.length);
-            # """)
+        if "whatsupcams.com" in link:
+            # Wait until the iframe is clickable
+            iframe = WebDriverWait(driver, 60).until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR, ".embed-responsive iframe"))
+            )
 
+            # Click the iframe
+            iframe.click()
 
-            # # Add multiple CSS rules to the element
-            # driver.execute_script("""
-            #     var sheet = window.document.styleSheets[0];
-            #     sheet.insertRule('body * { display: none !important; }', sheet.cssRules.length);
-                
+            # Wait a short period (e.g., 0.5 seconds)
+            time.sleep(20)
 
-            #     var element = arguments[0];
-            #     document.body.appendChild(element);
-            #     element.style.cssText += 'display: block !important; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999999999999999999999999;';
+            # Initialize ActionChains
+            actions = ActionChains(driver)
 
-            #     document.body.parentElement.style.cssText += 'min-height: 0 !important;'
-            #     document.body.style.cssText += 'overflow: hidden !important; height: 100vh !important;'
-            # """, element)
+            # Perform a double-click on the iframe
+            actions.double_click(iframe).perform()
 
+            # Switch to the iframe
+            driver.switch_to.frame(iframe)
 
+            # Wait until the video element is ready within the iframe
+            while True:
+                WebDriverWait(driver, 15).until(
+                    lambda d: d.execute_script('return document.querySelector("video") && document.querySelector("video").readyState === 4')
+                )
+                print("still running")
+                time.sleep(15)
 
-        # time.sleep(5)
 
         # driver.set_window_position(0, 0)
         # driver.fullscreen_window()
         
         print('Video not running!')
         
-        time.sleep(1)
+        time.sleep(5)
     
     except WebDriverException as e:
         print('Error loading page.')
