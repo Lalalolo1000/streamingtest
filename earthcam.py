@@ -78,7 +78,6 @@ while i < 30:
 
             while True:
                 print("still running:")
-                
                 print(driver.execute_script('return document.querySelector("video").readyState'))
                 WebDriverWait(driver, 15).until(
                     lambda d: d.execute_script('return document.querySelector("video") && document.querySelector("video").readyState === 4')
