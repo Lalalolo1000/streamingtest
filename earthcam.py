@@ -38,7 +38,7 @@ else:
 
 
 i = 0
-while i < 3:
+while i < 30:
 
     link = "https://www.earthcam.com/usa/newyork/timessquare/?cam=tsrobo1"
     #link = "https://www.skylinewebcams.com/de/webcam/deutschland/north-rhine-westphalia/cologne/cologne.html"
@@ -49,8 +49,7 @@ while i < 3:
     link = '#link#'
     driver.set_window_position(1280, 720)
     
-    wait = WebDriverWait(driver, 10)
-
+    # wait = WebDriverWait(driver, 10)
 
     try: 
 
@@ -151,19 +150,14 @@ while i < 3:
         driver.fullscreen_window()
         
         while True:
-            if driver.execute_script('return [...document.querySelectorAll("video")].pop().readyState < 1 || [...document.querySelectorAll("video")].pop().paused == true'):
-                driver.execute_script("""
-                    document.body.style.filter = 'invert(100%)';
-                """)
-            else:
-                driver.execute_script("""
-                    document.body.style.filter = 'invert(0%)';
-                """)
-            time.sleep(10)
+            if driver.execute_script('return document.querySelector("video").readyState < 4 || document.querySelector("video").paused == true'):
+                time.sleep(10)
+                if driver.execute_script('return document.querySelector("video").readyState < 4 || document.querySelector("video").paused == true'):
+                    break
         
         print('Video not running!')
         
-        time.sleep(5)
+        time.sleep(1)
     
     except WebDriverException as e:
         print('Error loading page.')
