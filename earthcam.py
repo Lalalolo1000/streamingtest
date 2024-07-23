@@ -46,7 +46,7 @@ while i < 3:
     # if not TESTING:
     # else:
         # link = "https://www.earthcam.com/usa/tennessee/nashville/?cam=nashville"
-    # link = '#link#'
+    link = '#link#'
     driver.set_window_position(1280, 720)
     
     wait = WebDriverWait(driver, 10)
