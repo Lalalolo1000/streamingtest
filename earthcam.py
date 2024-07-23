@@ -149,12 +149,13 @@ while i < 30:
         driver.set_window_position(0, 0)
         driver.fullscreen_window()
         
-        while True:
-            time.sleep(30)
-            if driver.execute_script('return document.querySelector("video").readyState < 4 || document.querySelector("video").paused == true'):
-                time.sleep(30)
-                if driver.execute_script('return document.querySelector("video").readyState < 4 || document.querySelector("video").paused == true'):
-                    break
+        time.sleep(900)
+        # while True:
+        #     time.sleep(30)
+        #     if driver.execute_script('return document.querySelector("video").readyState < 4 || document.querySelector("video").paused == true'):
+        #         time.sleep(30)
+        #         if driver.execute_script('return document.querySelector("video").readyState < 4 || document.querySelector("video").paused == true'):
+        #             break
         
         print('Video not running!')
         
