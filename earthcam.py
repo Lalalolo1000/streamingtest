@@ -65,13 +65,24 @@ while i < 30:
 
             # Wait for the element to be present
             element = WebDriverWait(driver, 60).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "video"))
+                EC.element_to_be_clickable((By.CSS_SELECTOR, "video"))
+            )
+
+            WebDriverWait(driver, 20).until(
+                lambda d: d.execute_script('return document.querySelector("video") && document.querySelector("video").readyState === 4')
             )
 
             actions = ActionChains(driver)
 
             actions.double_click(element).perform()
 
+            while True:
+                WebDriverWait(driver, 10).until(
+                    lambda d: d.execute_script('return document.querySelector("video") && document.querySelector("video").readyState === 4')
+                )
+                print("still running")
+                time.sleep(10)
+            
             # driver.execute_script("""
             #     var sheet = window.document.styleSheets[0];
             #     sheet.insertRule('body * { display: none !important; }', sheet.cssRules.length);
@@ -95,15 +106,10 @@ while i < 30:
 
 
 
-        time.sleep(5)
+        # time.sleep(5)
 
         # driver.set_window_position(0, 0)
         # driver.fullscreen_window()
-        
-        while True:
-            time.sleep(10)
-            if driver.execute_script('return document.querySelector("video").readyState === 0'):
-                break
         
         print('Video not running!')
         
