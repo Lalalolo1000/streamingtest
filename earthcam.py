@@ -1,4 +1,4 @@
-TESTING = False
+TESTING = True
 
 import sys
 import time
@@ -45,8 +45,8 @@ i = 0
 while i < 30:
 
     link = "https://www.earthcam.com/usa/newyork/timessquare/?cam=tsrobo1"
-    link = "https://www.whatsupcams.com/en/webcams/slovenia/upper-carniola/kranjska-gora/ski-resort-kranjska-gora-vitranc-1-upper-station/"
-    link = "https://www.webcamtaxi.com/en/spain/lanzarote/lanzarote-airport.html"
+    #link = "https://www.whatsupcams.com/en/webcams/slovenia/upper-carniola/kranjska-gora/ski-resort-kranjska-gora-vitranc-1-upper-station/"
+    #link = "https://www.webcamtaxi.com/en/spain/lanzarote/lanzarote-airport.html"
     #link = "https://www.whatsupcams.com/en/webcams/st-barths/st-barths/gustavia/live-webcam-st-barth-island-fond-de-rade-french-antilles-caribbean/"
     #link = "https://www.skylinewebcams.com/de/webcam/deutschland/north-rhine-westphalia/cologne/cologne.html"
     #link = "https://www.whatsupcams.com/de/webcams/italien/trentino-sudtirol/muehlbach/gitschberg-jochtal-webcam-skiexpress-tal/#google_vignette"
@@ -67,7 +67,7 @@ while i < 30:
             )
 
             WebDriverWait(driver, 20).until(
-                lambda d: d.execute_script('return document.querySelector("video") && document.querySelector("video").readyState === 4')
+                lambda d: d.execute_script('return document.querySelector("video") && document.querySelector("video").readyState !== 0')
             )
 
             time.sleep(20)
@@ -80,7 +80,7 @@ while i < 30:
                 print("still running:")
                 print(driver.execute_script('return document.querySelector("video").readyState'))
                 WebDriverWait(driver, 15).until(
-                    lambda d: d.execute_script('return document.querySelector("video") && document.querySelector("video").readyState === 4')
+                    lambda d: d.execute_script('return document.querySelector("video") && document.querySelector("video").readyState !== 0')
                 )
                 time.sleep(15)
             
@@ -108,7 +108,7 @@ while i < 30:
             # Wait until the video element is ready within the iframe
             while True:
                 WebDriverWait(driver, 15).until(
-                    lambda d: d.execute_script('return document.querySelector("video") && document.querySelector("video").readyState === 4')
+                    lambda d: d.execute_script('return document.querySelector("video") && document.querySelector("video").readyState !== 0')
                 )
                 print("still running")
                 time.sleep(15)
