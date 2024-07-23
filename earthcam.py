@@ -1,3 +1,5 @@
+TESTING = True
+
 import sys
 import time
 import pathlib
@@ -12,8 +14,10 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 
 chrome_options = webdriver.ChromeOptions()
 
+
 # Running
-chrome_options.add_argument('user-data-dir=/home/pi/.config/chromium/')
+if not TESTING:
+    chrome_options.add_argument('user-data-dir=/home/pi/.config/chromium/')
 
 prefs = {'exit_type': 'Normal'}
 chrome_options.add_experimental_option("prefs", {'profile': prefs})
@@ -26,12 +30,13 @@ chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
 chrome_options.add_experimental_option('useAutomationExtension', False)
 
-# Running
-driver = webdriver.Chrome(chrome_options =chrome_options)
-
-# Testing
-# service = ChromeService(executable_path='/usr/bin/chromedriver')
-# driver = webdriver.Chrome(service=service, options=chrome_options)
+if not TESTING:
+    # Running
+    driver = webdriver.Chrome(chrome_options=chrome_options)
+else:
+    # Testing
+    service = ChromeService(executable_path='/usr/bin/chromedriver')
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
 
 i = 0
@@ -40,8 +45,10 @@ while i < 3:
     #link = "https://www.earthcam.com/usa/tennessee/nashville/?cam=nashville"
     #link = "https://www.skylinewebcams.com/de/webcam/deutschland/north-rhine-westphalia/cologne/cologne.html"
     #link = "https://www.whatsupcams.com/de/webcams/italien/trentino-sudtirol/muehlbach/gitschberg-jochtal-webcam-skiexpress-tal/#google_vignette"
-    
-    link = '#link#'
+    if not TESTING:
+        link = '#link#'
+    else:
+        link = "https://www.earthcam.com/usa/tennessee/nashville/?cam=nashville"
     driver.set_window_position(1280, 720)
     
     wait = WebDriverWait(driver, 10)
