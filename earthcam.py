@@ -40,7 +40,7 @@ else:
 i = 0
 while i < 3:
 
-    link = "https://www.earthcam.com/usa/tennessee/nashville/?cam=nashville"
+    link = "https://www.earthcam.com/usa/newyork/timessquare/?cam=tsrobo1"
     #link = "https://www.skylinewebcams.com/de/webcam/deutschland/north-rhine-westphalia/cologne/cologne.html"
     #link = "https://www.whatsupcams.com/de/webcams/italien/trentino-sudtirol/muehlbach/gitschberg-jochtal-webcam-skiexpress-tal/#google_vignette"
     # if not TESTING:
@@ -150,7 +150,16 @@ while i < 3:
         driver.set_window_position(0, 0)
         driver.fullscreen_window()
         
-        time.sleep(9000)
+        while True:
+            if driver.execute_script('return [...document.querySelectorAll("video")].pop().readyState < 1 || [...document.querySelectorAll("video")].pop().paused == true'):
+                driver.execute_script("""
+                    document.body.style.filter = 'invert(100%)';
+                """)
+            else:
+                driver.execute_script("""
+                    document.body.style.filter = 'invert(0%)';
+                """)
+            time.sleep(10)
         
         print('Video not running!')
         
