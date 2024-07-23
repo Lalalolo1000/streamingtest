@@ -46,7 +46,7 @@ while i < 3:
     # if not TESTING:
     # else:
         # link = "https://www.earthcam.com/usa/tennessee/nashville/?cam=nashville"
-    link = '#link#'
+    # link = '#link#'
     driver.set_window_position(1280, 720)
     
     wait = WebDriverWait(driver, 10)
@@ -71,9 +71,12 @@ while i < 3:
 
             # Add multiple CSS rules to the element
             driver.execute_script("""
+                var sheet = window.document.styleSheets[0];
+                sheet.insertRule('body * { display: none !important; }', sheet.cssRules.length);
+
                 var element = arguments[0];
                 document.body.appendChild(element);
-                element.style.cssText += 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999999999999999999999999;';
+                element.style.cssText += 'display: block !important; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999999999999999999999999;';
 
                 document.body.parentElement.style.cssText += 'min-height: 0 !important;'
                 document.body.style.cssText += 'overflow: hidden !important; height: 100vh !important;'
