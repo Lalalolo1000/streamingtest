@@ -1,4 +1,4 @@
-TESTING = True
+TESTING = False
 
 import sys
 import time
