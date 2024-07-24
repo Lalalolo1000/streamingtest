@@ -12,15 +12,14 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.action_chains import ActionChains
 
 
-
 chrome_options = webdriver.ChromeOptions()
-
 
 # Running
 if not TESTING:
     chrome_options.add_argument('user-data-dir=/home/pi/.config/chromium/')
 else:
     chrome_options.add_argument('user-data-dir=/home/ki-lab/user-data')
+
 
 prefs = {'exit_type': 'Normal'}
 chrome_options.add_experimental_option("prefs", {'profile': prefs})
@@ -44,9 +43,9 @@ else:
 i = 0
 while i < 30:
 
-    #link = "https://www.earthcam.com/usa/newyork/timessquare/?cam=tsrobo1"
+    link = "https://www.earthcam.com/usa/newyork/timessquare/?cam=tsrobo1"
     #link = "https://www.whatsupcams.com/en/webcams/slovenia/upper-carniola/kranjska-gora/ski-resort-kranjska-gora-vitranc-1-upper-station/"
-    link = "https://www.whatsupcams.com/en/webcams/st-barths/st-barths/gustavia/live-webcam-st-barth-island-fond-de-rade-french-antilles-caribbean/"
+    #link = "https://www.whatsupcams.com/en/webcams/st-barths/st-barths/gustavia/live-webcam-st-barth-island-fond-de-rade-french-antilles-caribbean/"
     #link = "https://www.webcamtaxi.com/en/spain/lanzarote/lanzarote-airport.html"
     #link = "https://www.skylinewebcams.com/de/webcam/deutschland/north-rhine-westphalia/cologne/cologne.html"
     #link = "https://www.whatsupcams.com/de/webcams/italien/trentino-sudtirol/muehlbach/gitschberg-jochtal-webcam-skiexpress-tal/#google_vignette"
@@ -55,8 +54,6 @@ while i < 30:
     
     driver.set_window_position(1280, 720)
     
-    # wait = WebDriverWait(driver, 10)
-
     try: 
 
         driver.get(link)
@@ -109,6 +106,8 @@ while i < 30:
                 sheet.insertRule('.ytp-spinner { opacity: 0 !important; }', sheet.cssRules.length);
             """)
 
+            driver.switch_to.default_content()
+
 
         for repeats in range(400):
             print("still running:")
@@ -120,13 +119,26 @@ while i < 30:
             is_fullscreen = driver.execute_script('return document.fullscreenElement !== null')
             if not is_fullscreen:
                 print("NOT FULLSCREEN")
+                selector = ""
+                # Double-click the element
                 if "earthcam.com" in link:
-                    # Double-click the element
-                    element = WebDriverWait(driver, 5).until(
-                        EC.element_to_be_clickable((By.CSS_SELECTOR, "video"))
-                    )              
-                    actions = ActionChains(driver)
-                    actions.double_click(element).perform()
+                    selector = "video"
+
+                if "whatsupcams.com" in link:
+                    selector = ".embed-responsive iframe"
+
+                driver.switch_to.default_content()
+
+                element = WebDriverWait(driver, 5).until(
+                    EC.element_to_be_clickable((By.CSS_SELECTOR, selector))
+                )              
+
+                actions = ActionChains(driver)
+                actions.double_click(element).perform()
+
+                if "whatsupcams.com" in link:
+                    driver.switch_to.frame(element)
+
             time.sleep(15)
 
         # driver.set_window_position(0, 0)
