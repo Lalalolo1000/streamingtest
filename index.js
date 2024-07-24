@@ -37,7 +37,7 @@ app.post('/save', function(req, res) {
 
 // Step 2: Add the /restart endpoint
 app.get('/restart', function(req, res) {
-    const child = spawn('bash', ['/home/pi/earth/restart_all.sh']);
+    const child = spawn('bash', [`${__dirname}/restart_all.sh`]);
     child.stdout.on('data', (data) => {
         console.log(`stdout: ${data.toString()}`);
     });
@@ -52,4 +52,42 @@ app.get('/restart', function(req, res) {
     res.sendStatus(200);
 });
 
-app.listen(8000);
+// Step 3: Add the /start endpoint
+app.get('/start', function(req, res) {
+    let id = req.query.id;
+    const child = spawn('bash', [`${__dirname}/start.sh`, id]);
+    child.stdout.on('data', (data) => {
+        console.log(`stdout: ${data.toString()}`);
+    });
+    
+    child.stderr.on('data', (data) => {
+        console.error(`stderr: ${data.toString()}`);
+    });
+    
+    child.on('close', (code) => {
+        console.log(`child process exited with code ${code}`);
+    });
+    res.sendStatus(200);
+});
+
+// Step 4: Add the /stop endpoint
+app.get('/stop', function(req, res) {
+    let id = req.query.id;
+    const child = spawn('bash', [`${__dirname}/stop.sh`, id]);
+    child.stdout.on('data', (data) => {
+        console.log(`stdout: ${data.toString()}`);
+    });
+    
+    child.stderr.on('data', (data) => {
+        console.error(`stderr: ${data.toString()}`);
+    });
+    
+    child.on('close', (code) => {
+        console.log(`child process exited with code ${code}`);
+    });
+    res.sendStatus(200);
+});
+
+app.listen(8000, () => {
+    console.log('Server is listening on port 8000');
+});

@@ -23,4 +23,58 @@ Connecting to 192.168.0.201:8000... failed: Connection timed out.
 Retrying.
 
 --2024-07-24 15:04:26--  (try: 7)  http://192.168.0.201:8000/earth/
-Connecting to 192.168.0.201:8000... 
+Connecting to 192.168.0.201:8000... failed: Connection timed out.
+Retrying.
+
+--2024-07-24 15:06:46--  (try: 8)  http://192.168.0.201:8000/earth/
+Connecting to 192.168.0.201:8000... failed: Connection timed out.
+Retrying.
+
+--2024-07-24 15:09:09--  (try: 9)  http://192.168.0.201:8000/earth/
+Connecting to 192.168.0.201:8000... failed: Connection timed out.
+Retrying.
+
+--2024-07-24 15:11:31--  (try:10)  http://192.168.0.201:8000/earth/
+Connecting to 192.168.0.201:8000... failed: Connection timed out.
+Retrying.
+
+--2024-07-24 15:13:55--  (try:11)  http://192.168.0.201:8000/earth/
+Connecting to 192.168.0.201:8000... failed: Connection timed out.
+Retrying.
+
+--2024-07-24 15:16:19--  (try:12)  http://192.168.0.201:8000/earth/
+Connecting to 192.168.0.201:8000... failed: Connection timed out.
+Retrying.
+
+--2024-07-24 15:18:42--  (try:13)  http://192.168.0.201:8000/earth/
+Connecting to 192.168.0.201:8000... failed: Connection timed out.
+Retrying.
+
+--2024-07-24 15:21:05--  (try:14)  http://192.168.0.201:8000/earth/
+Connecting to 192.168.0.201:8000... failed: Connection timed out.
+Retrying.
+
+--2024-07-24 15:23:29--  (try:15)  http://192.168.0.201:8000/earth/
+Connecting to 192.168.0.201:8000... failed: Connection timed out.
+Retrying.
+
+--2024-07-24 15:25:52--  (try:16)  http://192.168.0.201:8000/earth/
+Connecting to 192.168.0.201:8000... failed: Connection timed out.
+Retrying.
+
+--2024-07-24 15:28:16--  (try:17)  http://192.168.0.201:8000/earth/
+Connecting to 192.168.0.201:8000... failed: Connection timed out.
+Retrying.
+
+--2024-07-24 15:30:39--  (try:18)  http://192.168.0.201:8000/earth/
+Connecting to 192.168.0.201:8000... failed: Connection timed out.
+Retrying.
+
+--2024-07-24 15:33:02--  (try:19)  http://192.168.0.201:8000/earth/
+Connecting to 192.168.0.201:8000... failed: Connection timed out.
+Retrying.
+
+--2024-07-24 15:35:26--  (try:20)  http://192.168.0.201:8000/earth/
+Connecting to 192.168.0.201:8000... failed: Connection timed out.
+Giving up.
+
