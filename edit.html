@@ -72,13 +72,13 @@
                 
                 document.querySelectorAll('input[type=url]').forEach((input, index) => {
                     let str = input.value
-                    if (!str.includes('earthcam.com') && !str.includes('youtube') && !str.includes('skylinewebcams.com')) {
+                    if (!str.includes('earthcam.com') && !str.includes('whatsupcams')) {
                         errorNumbers.push(index + 1)
                         error = true
                     }
                 })
                 if (error) {
-                    alert(`Fehler aufgetreten, folgende Webcam-Links sind weder von YouTube, earthcam.com oder skylinewebcams.com: ${errorNumbers.join(',')}`)
+                    alert(`Fehler aufgetreten, folgende Webcam-Links sind weder von earthcam.com oder whatsupcams.com: ${errorNumbers.join(',')}`)
                 } else {
                     document.querySelector('form').submit()
                 }
