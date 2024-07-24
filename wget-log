@@ -15,4 +15,12 @@ Connecting to 192.168.0.201:8000... failed: Connection timed out.
 Retrying.
 
 --2024-07-24 14:59:46--  (try: 5)  http://192.168.0.201:8000/earth/
+Connecting to 192.168.0.201:8000... failed: Connection timed out.
+Retrying.
+
+--2024-07-24 15:02:06--  (try: 6)  http://192.168.0.201:8000/earth/
+Connecting to 192.168.0.201:8000... failed: Connection timed out.
+Retrying.
+
+--2024-07-24 15:04:26--  (try: 7)  http://192.168.0.201:8000/earth/
 Connecting to 192.168.0.201:8000... 
