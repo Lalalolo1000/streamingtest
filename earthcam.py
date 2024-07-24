@@ -40,7 +40,6 @@ else:
     service = ChromeService(executable_path='/usr/bin/chromedriver')
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
-
 i = 0
 while i < 30:
 
@@ -62,7 +61,7 @@ while i < 30:
         driver.get(link)
 
         if "earthcam.com" in link:
-            element = WebDriverWait(driver, 240).until(
+            element = WebDriverWait(driver, 300).until(
                 EC.element_to_be_clickable((By.CSS_SELECTOR, "video"))
             )
 
@@ -83,7 +82,7 @@ while i < 30:
             
         if "whatsupcams.com" in link:
             # Wait until the iframe is clickable
-            iframe = WebDriverWait(driver, 280).until(
+            iframe = WebDriverWait(driver, 300).until(
                 EC.element_to_be_clickable((By.CSS_SELECTOR, ".embed-responsive iframe"))
             )
 
@@ -110,7 +109,7 @@ while i < 30:
             """)
 
 
-        for repeats in range(500):
+        for repeats in range(400):
             print("still running:")
             print(driver.execute_script('return document.querySelector("video").readyState'))
             WebDriverWait(driver, 15).until(
