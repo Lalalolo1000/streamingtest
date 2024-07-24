@@ -65,6 +65,10 @@
             input[type=button]:hover {
               background-color: #454545;
             }
+
+            input[type=button].restart {
+              background-color: #8f0707;
+            }
         </style>
         <script>
             function checkUrls(e) {
@@ -118,6 +122,27 @@
                     submit.type = 'submit'
                     submit.value = 'Speichern'
                     form.appendChild(submit)
+
+                    
+                    let restart = document.createElement('input')
+                    restart.type = 'button'
+                    restart.value = 'Alle neustarten'
+                    restart.classList.add('restart')
+                    restart.onclick = function() {
+                        fetch('/restart')
+                            .then(response => {
+                                if (response.ok) {
+                                    alert('Restarting...');
+                                } else {
+                                    throw new Error('Network response was not ok');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('There was a problem with the fetch operation:', error);
+                                alert('Error executing restart script');
+                            });
+                    };
+                    form.appendChild(restart)
                 }
 
                 var xhr = new XMLHttpRequest();
