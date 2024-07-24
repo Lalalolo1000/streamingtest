@@ -11,4 +11,4 @@ ip_address="192.168.0.2${formatted_id}"
 
 # Execute the SSH command to kill all bash processes for the user on the target machine
 echo "start " $ip_address
-sshpass -p raspberrypi ssh pi@$ip_address "bash /home/pi/earth/earthstarter.sh"
+sshpass -p raspberrypi ssh pi@$ip_address "bash /home/pi/earth/earthstarter.sh $id"
