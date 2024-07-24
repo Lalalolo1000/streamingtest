@@ -13,7 +13,7 @@ ip_address="192.168.0.2${formatted_id}"
 if [ "$id" -eq 1 ]; then
     # If id is zero, run the local ps and kill commands
     echo "Killing all bash processes for the user on the local machine"
-    ps aux | grep '[b]ash' | awk '{print $2}' | xargs kill
+    ps aux | grep '[e]arthstarter.sh' | awk '{print $2}' | xargs kill -9
 else
     # Otherwise, run the SSH command to kill all bash processes for the user on the target machine
     echo "Stopping bash processes on $ip_address"
