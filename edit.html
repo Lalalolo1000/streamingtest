@@ -141,6 +141,26 @@
                             });
                     };
                     form.appendChild(restart)
+
+                    let stopall = document.createElement('input')
+                    stopall.type = 'button'
+                    stopall.value = 'Alle neustarten'
+                    stopall.classList.add('restart')
+                    stopall.onclick = function() {
+                        fetch('/stopall')
+                            .then(response => {
+                                if (response.ok) {
+                                    alert('stopall...');
+                                } else {
+                                    throw new Error('Network response was not ok');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('There was a problem with the fetch operation:', error);
+                                alert('Error executing stopping all');
+                            });
+                    };
+                    form.appendChild(stopall)
                 }
 
                 var xhr = new XMLHttpRequest();

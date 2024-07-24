@@ -52,6 +52,23 @@ app.get('/restart', function(req, res) {
     res.sendStatus(200);
 });
 
+//Stop all
+app.get('/stopall', function(req, res) {
+    const child = spawn('bash', [`${__dirname}/stop_all.sh`]);
+    child.stdout.on('data', (data) => {
+        console.log(`stdout: ${data.toString()}`);
+    });
+    
+    child.stderr.on('data', (data) => {
+        console.error(`stderr: ${data.toString()}`);
+    });
+    
+    child.on('close', (code) => {
+        console.log(`child process exited with code ${code}`);
+    });
+    res.sendStatus(200);
+});
+
 // Step 3: Add the /start endpoint
 app.get('/start', function(req, res) {
     let id = req.query.id;
