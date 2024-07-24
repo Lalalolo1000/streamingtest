@@ -1,24 +1,24 @@
-# sshpass -p raspberrypi ssh pi@192.168.0.202 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.203 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.204 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.205 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.206 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.207 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.208 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.209 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.210 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.211 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.212 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.213 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.214 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.215 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.216 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.217 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.218 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.219 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.220 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.221 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.222 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.223 "sudo shutdown -r now" & 
-# sshpass -p raspberrypi ssh pi@192.168.0.224 "sudo shutdown -r now" &  
+sshpass -p raspberrypi ssh pi@192.168.0.202 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.203 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.204 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.205 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.206 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.207 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.208 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.209 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.210 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.211 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.212 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.213 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.214 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.215 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.216 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.217 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.218 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.219 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.220 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.221 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.222 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.223 "sudo shutdown -r now" & 
+sshpass -p raspberrypi ssh pi@192.168.0.224 "sudo shutdown -r now" &  
 echo "done"
