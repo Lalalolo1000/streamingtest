@@ -1,5 +1,5 @@
 # Does Git Work
-TESTING = False
+TESTING = True
 
 import sys
 import time
@@ -43,9 +43,9 @@ else:
 i = 0
 while i < 30:
 
-    link = "https://www.earthcam.com/usa/newyork/timessquare/?cam=tsrobo1"
+    #link = "https://www.earthcam.com/usa/newyork/timessquare/?cam=tsrobo1"
     #link = "https://www.whatsupcams.com/en/webcams/slovenia/upper-carniola/kranjska-gora/ski-resort-kranjska-gora-vitranc-1-upper-station/"
-    #link = "https://www.whatsupcams.com/en/webcams/st-barths/st-barths/gustavia/live-webcam-st-barth-island-fond-de-rade-french-antilles-caribbean/"
+    link = "https://www.whatsupcams.com/en/webcams/st-barths/st-barths/gustavia/live-webcam-st-barth-island-fond-de-rade-french-antilles-caribbean/"
     #link = "https://www.webcamtaxi.com/en/spain/lanzarote/lanzarote-airport.html"
     #link = "https://www.skylinewebcams.com/de/webcam/deutschland/north-rhine-westphalia/cologne/cologne.html"
     #link = "https://www.whatsupcams.com/de/webcams/italien/trentino-sudtirol/muehlbach/gitschberg-jochtal-webcam-skiexpress-tal/#google_vignette"
@@ -105,9 +105,6 @@ while i < 30:
                 sheet.insertRule('* { font-size: 0px !important; }', sheet.cssRules.length);
                 sheet.insertRule('.ytp-spinner { opacity: 0 !important; }', sheet.cssRules.length);
             """)
-
-            driver.switch_to.default_content()
-
 
         for repeats in range(400):
             print("still running:")

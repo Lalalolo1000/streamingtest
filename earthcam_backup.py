@@ -1,5 +1,5 @@
 # Does Git Work
-TESTING = False
+TESTING = True
 
 import sys
 import time
@@ -171,9 +171,7 @@ for i in range(30):
 
                 element = WebDriverWait(driver, 5).until(
                     EC.element_to_be_clickable((By.CSS_SELECTOR, selector))
-                )             
- 
-                time.sleep(5)
+                )              
 
                 actions = ActionChains(driver)
                 actions.double_click(element).perform()
