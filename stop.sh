@@ -14,7 +14,7 @@ if [ "$id" -eq 1 ]; then
     # If id is zero, run the local ps and kill commands
     echo "Killing all bash processes for the user on the local machine"
     ps aux | grep '[e]arthstarter.sh' | awk '{print $2}' | xargs kill -9
-    ps aux | grep '[e]arthcam.py' | awk '{print $2}' | xargs kill -9
+    killall -u $USER chromium-browser
 else
     # Otherwise, run the SSH command to kill all bash processes for the user on the target machine
     echo "Stopping bash processes on $ip_address"
