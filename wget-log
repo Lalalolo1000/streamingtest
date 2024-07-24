@@ -1,0 +1,6 @@
+--2024-07-24 14:50:37--  http://192.168.0.201:8000/earth/
+Connecting to 192.168.0.201:8000... failed: Connection timed out.
+Retrying.
+
+--2024-07-24 14:52:53--  (try: 2)  http://192.168.0.201:8000/earth/
+Connecting to 192.168.0.201:8000... 

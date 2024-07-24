@@ -37,7 +37,7 @@ app.post('/save', function(req, res) {
 
 // Step 2: Add the /restart endpoint
 app.get('/restart', function(req, res) {
-    const child = spawn('bash', ['/home/pi/earth/restart_all.sh']);
+    const child = spawn('bash', ['/home/ki-lab/Documents/earthcam/streamingtest/restart_all.sh']);
     child.stdout.on('data', (data) => {
         console.log(`stdout: ${data.toString()}`);
     });
