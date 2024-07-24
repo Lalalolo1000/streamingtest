@@ -116,6 +116,17 @@ while i < 30:
             WebDriverWait(driver, 15).until(
                 lambda d: d.execute_script('return document.querySelector("video") && document.querySelector("video").readyState !== 0')
             )
+
+            is_fullscreen = driver.execute_script('return document.fullscreenElement !== null')
+            if not is_fullscreen:
+                print("NOT FULLSCREEN")
+                if "earthcam.com" in link:
+                    # Double-click the element
+                    element = WebDriverWait(driver, 5).until(
+                        EC.element_to_be_clickable((By.CSS_SELECTOR, "video"))
+                    )              
+                    actions = ActionChains(driver)
+                    actions.double_click(element).perform()
             time.sleep(15)
 
         # driver.set_window_position(0, 0)
