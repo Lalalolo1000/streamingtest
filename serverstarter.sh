@@ -7,6 +7,4 @@ sleep 10
 
 /usr/bin/node /home/pi/earth/index.js
 
-reboot
-
 
